@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Day in History</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📅</text></svg>">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #0056b3;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Find "This Day in History"</h1>
+        <p>Select a date to see what happened on History.com</p>
+        
+        <select id="month">
+            <option value="" disabled selected>Month</option>
+            <option value="january">January</option>
+            <option value="february">February</option>
+            <option value="march">March</option>
+            <option value="april">April</option>
+            <option value="may">May</option>
+            <option value="june">June</option>
+            <option value="july">July</option>
+            <option value="august">August</option>
+            <option value="september">September</option>
+            <option value="october">October</option>
+            <option value="november">November</option>
+            <option value="december">December</option>
+        </select>
+
+        <select id="day">
+            <option value="" disabled selected>Day</option>
+            </select>
+
+        <br>
+        <button onclick="redirectToHistory()">Go to History.com</button>
+    </div>
+
+    <script>
+        // Populate the day dropdown automatically
+        const daySelect = document.getElementById("day");
+        for (let i = 1; i <= 31; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            daySelect.appendChild(option);
+        }
+
+        // Function to build the URL and redirect
+        function redirectToHistory() {
+            const month = document.getElementById("month").value;
+            const day = document.getElementById("day").value;
+
+            if (month && day) {
+                // Construct the URL format: history.com/this-day-in-history/april-20
+                const targetUrl = `https://www.history.com/this-day-in-history/${month}-${day}`;
+                
+                // Redirect the current tab to the URL
+                window.location.href = targetUrl;
+                
+            } else {
+                alert("Please select both a month and a day.");
+            }
+        }
+    </script>
+
+</body>
+</html>
